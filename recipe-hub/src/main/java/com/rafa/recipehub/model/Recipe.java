@@ -21,9 +21,9 @@ public class Recipe {
 
     @ManyToOne
     private User user;
+
     private String image;
     private String description;
-    private Boolean bagitarian;
     private LocalDateTime createdAt;
     private List<Long> likes = new ArrayList<>();
 
@@ -59,6 +59,7 @@ public class Recipe {
         this.description = description;
     }
 
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -67,13 +68,7 @@ public class Recipe {
         this.createdAt = createdAt;
     }
 
-    public Boolean getBagitarian() {
-        return bagitarian;
-    }
 
-    public void setBagitarian(Boolean bagitarian) {
-        this.bagitarian = bagitarian;
-    }
 
     public Long getId() {
         return id;
