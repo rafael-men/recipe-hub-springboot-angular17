@@ -21,7 +21,8 @@
 <section>
         <h2>Instalação</h2>
         <ol>
-            <li>Clone o repositório: <pre><code>git clone https://github.com/usuario/nome-do-repositorio.git</code></pre></li>
+            <li>Clone o repositório: <pre><code>git clone https://github.com/rafael-men/recipe-hub-springboot-angular17
+.git</code></pre></li>
             <li>Navegue até o diretório do projeto: <pre><code>cd nome-do-repositorio</code></pre></li>
             <li>Configure o banco de dados no arquivo <code>application.properties</code>:</li>
             <pre><code>
@@ -29,8 +30,7 @@ spring.datasource.url=jdbc:mysql://localhost:3306/recipes
 spring.datasource.username=root
 spring.datasource.password=root123
             </code></pre>
-            <li>Construa o projeto com Maven: <pre><code>mvn clean install</code></pre></li>
-            <li>Execute a aplicação: <pre><code>java -jar target/nome-do-jar.jar</code></pre></li>
+        
         </ol>
     </section>
 
