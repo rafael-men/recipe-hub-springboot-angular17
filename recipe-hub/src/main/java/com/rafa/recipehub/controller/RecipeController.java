@@ -20,9 +20,9 @@ public class RecipeController {
     @Autowired
     private UserServices userServices;
 
-    @PostMapping("/user/{userId}")
-    public Recipe createRecipe(@RequestBody Recipe recipe, @PathVariable Long userId) throws Exception{
-        User user = userServices.findUserById(userId);
+    @PostMapping()
+    public Recipe createRecipe(@RequestBody Recipe recipe, @RequestHeader("Authorization") String jwt) throws Exception{
+        User user = userServices.findUserByJwt(jwt);
         Recipe createdRecipe=recipeServices.createRecipe(recipe,user);
         return createdRecipe;
     }
@@ -46,11 +46,11 @@ public class RecipeController {
         return "Deleted Successfully";
     }
 
-    @PutMapping("/{id}/like/user/{userId}")
-    public Recipe likeRecipe(@PathVariable Long userId,@PathVariable  Long Id) throws Exception{
+    @PutMapping("/{id}/like")
+    public Recipe likeRecipe(@RequestHeader("Authorization") String jwt,@PathVariable Long id) throws Exception{
 
-        User user=userServices.findUserById(userId);
-        Recipe updatedRecipe = recipeServices.likeRecipe(Id,user);
+        User user=userServices.findUserByJwt(jwt);
+        Recipe updatedRecipe = recipeServices.likeRecipe(id,user);
         return updatedRecipe;
     }
 }
