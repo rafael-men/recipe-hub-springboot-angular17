@@ -28,9 +28,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
+              
             ],
             "styles":[
-              "src/styles.scss" 
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
