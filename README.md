@@ -1,5 +1,5 @@
 <header>
-        <h1>The Recipe Hub</h1>
+        <h1>The Recipe Hub</h1>  
     </header>
 
 <section>
