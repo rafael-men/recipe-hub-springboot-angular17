@@ -1,12 +1,13 @@
 <mat-card class="example-card">
     <mat-card-header>
       <img mat-card-avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH1FXCyHsTTlXEm9cA_bRnzj5JiPiGa3I-x9GT35OUtA&s" alt="">
-      <mat-card-title>Rafael</mat-card-title>
+      <mat-card-title>{{recipe.user.fullName}}</mat-card-title>
     </mat-card-header>
-    <img class="max-h-[400px] object-cover" src="https://images.squarespace-cdn.com/content/v1/5e5e9fc80a4f5d45cfd0c96d/1605202246462-9G19TQXIAORMUPWZP0HT/Farikal01.jpg">
+    <p class="pl-5 font-semibold size-5 text-lg ">{{recipe.title}}</p>
+    <img class="max-h-[400px] object-cover" [src]="recipe.image">
     <mat-card-content>
-      <p>
-        O fårikål é um cozido de pedaços de ovelha com osso - as carnes são o ombro, o pescoço e as costelas -, podendo também ser preparado com carne do lombo, além dos demais ingredientes, que são o repolho verde, sal e a pimenta preta em grãos. Todos os ingredientes são cozidos em uma panela por várias horas.
+      <p class="pt-4 text-white">
+       {{recipe.description}}
       </p>
     </mat-card-content>
     <mat-card-actions class="flex justify-between">
@@ -20,7 +21,7 @@
         <button mat-icon-button aria-label="Example icon button with a home icon">
           <mat-icon>share</mat-icon>
         </button>
-        <button mat-icon-button aria-label="Example icon button with a home icon">
+        <button (click)="handleDeleteRecipe()" mat-icon-button aria-label="Example icon button with a home icon">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
