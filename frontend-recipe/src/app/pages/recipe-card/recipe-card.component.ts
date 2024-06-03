@@ -20,10 +20,19 @@ export class RecipeCardComponent {
   constructor(public dialog:MatDialog,private recipeService:RecipeServiceService) {}
 
   handleOpenEditRecipeForm() {
-    this.dialog.open(UpdateRecipeFormComponent)
+    this.dialog.open(UpdateRecipeFormComponent,{data:this.recipe})
   }
 
-  handleDeleteRecipe(){
-    this.recipeService.deleteRecipe(this.recipe.id).subscribe()
+  handleDeleteRecipe() {
+    this.recipeService.deleteRecipe(this.recipe.id).subscribe(
+      () => {
+        console.log('Recipe deleted successfully.');
+      },
+      (error) => {
+        console.error('Error deleting recipe:', error);
+      }
+    );
   }
+  
 }
+

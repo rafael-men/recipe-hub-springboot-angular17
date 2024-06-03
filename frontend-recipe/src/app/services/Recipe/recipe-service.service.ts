@@ -1,13 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeServiceService {
-
   private baseUrl = 'http://localhost:5454';
 
   constructor(private http: HttpClient) { }
@@ -31,7 +30,8 @@ export class RecipeServiceService {
       tap((recipes) => {
         const currentState = this.recipeSubject.value;
         this.recipeSubject.next({ ...currentState, recipes });
-      })
+      }),
+      catchError(this.handleError)
     );
   }
 
@@ -41,7 +41,8 @@ export class RecipeServiceService {
       tap((newRecipe) => {
         const currentState = this.recipeSubject.value;
         this.recipeSubject.next({ ...currentState, recipes: [newRecipe, ...currentState.recipes] });
-      })
+      }),
+      catchError(this.handleError)
     );
   }
 
@@ -52,7 +53,8 @@ export class RecipeServiceService {
         const currentState = this.recipeSubject.value;
         const updatedRecipes = currentState.recipes.map((item: any) => item.id === updatedRecipe.id ? updatedRecipe : item);
         this.recipeSubject.next({ ...currentState, recipes: updatedRecipes });
-      })
+      }),
+      catchError(this.handleError)
     );
   }
 
@@ -63,7 +65,8 @@ export class RecipeServiceService {
         const currentState = this.recipeSubject.value;
         const updatedRecipes = currentState.recipes.map((item: any) => item.id === updatedRecipe.id ? updatedRecipe : item);
         this.recipeSubject.next({ ...currentState, recipes: updatedRecipes });
-      })
+      }),
+      catchError(this.handleError)
     );
   }
 
@@ -72,10 +75,26 @@ export class RecipeServiceService {
     const url = `${this.baseUrl}/api/recipes/${id}`;
   
     return this.http.delete<any>(url, { headers }).pipe(
-      catchError((error) => {
-        console.error('Error deleting recipe:', error);
-        throw new Error('Failed to delete recipe. Please try again later.'); // Ou personalize a mensagem de erro conforme necessário
-      })
+      tap(() => {
+        const currentState = this.recipeSubject.value;
+        const updatedRecipes = currentState.recipes.filter((recipe: any) => recipe.id !== id);
+        this.recipeSubject.next({ ...currentState, recipes: updatedRecipes });
+      }),
+      catchError(this.handleError) 
     );
+  }
+  
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Something went wrong; please try again later.';
+    if (error.error instanceof ErrorEvent) {
+  
+      errorMessage = `An error occurred: ${error.error.message}`;
+    } else {
+      
+      errorMessage = `Backend returned code ${error.status}: ${error.error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 }
