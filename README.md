@@ -31,10 +31,7 @@ spring.datasource.username=root
 spring.datasource.password=root123
             </code></pre>
         
-        </ol>
-    </section>
-
-    
+       
 
 
   
