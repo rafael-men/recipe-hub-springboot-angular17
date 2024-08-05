@@ -18,6 +18,15 @@
         </ul>
     </section>
 
+<section>
+        <h2>Recursos Utilizados</h2>
+        <ul>
+            <li>Java + Springboot</li>
+            <li>Angular 17 Framework</li>
+            <li>Banco de dados MySQL</li>
+            <li>Typescript</li>
+        </ul>
+    </section>
         
        
 
