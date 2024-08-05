@@ -4,7 +4,7 @@
 
 <section>
         <h2>Descrição</h2>
-        <p>Esta é minha primeira aplicação Fullstack Java+React para gerenciamento de receitas culinárias. Com esta aplicação, os usuários podem adicionar, visualizar, editar e excluir receitas, além de buscar por receitas específicas com base em ingredientes ou nome.</p>
+        <p>Esta é minha primeira aplicação Fullstack utilizando Java e Angular para gerenciamento de receitas culinárias. funcionando como um CRUD, os usuários podem adicionar, visualizar, editar e excluir receitas, além de buscar por receitas específicas com base em ingredientes ou nome.</p>
     </section>
 
 <section>
